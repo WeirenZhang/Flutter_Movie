@@ -24,7 +24,7 @@ class TheaterAreaWidgetState extends BaseListState<TheaterAreaItemModel,
               AppNavigator.pushMovieTheaterlist(
                   context,
                   model.itemList[index].theater_top,
-                  model.itemList[index].theater_list_info);
+                  model.itemList[index].theater_list);
             },
             child: Padding(
               padding: const EdgeInsets.only(

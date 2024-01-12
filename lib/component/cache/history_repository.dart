@@ -39,8 +39,8 @@ class HistoryRepository {
 
     for (var item in theaterList) {
       Map<String, dynamic> user = json.decode(item);
-      if (data.theater_id.contains(user['theater_id'])) {
-        print("${data.theater_id} = ${user['theater_id']} 有資料了");
+      if (data.id.contains(user['id'])) {
+        print("${data.id} = ${user['id']} 有資料了");
         check = true;
         break;
       }

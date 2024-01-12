@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:movie_flutter/component/core/model/paging_model.dart';
 import 'package:html/parser.dart';
 import 'package:movie_flutter/component/utils/utils.dart';
@@ -10,8 +12,6 @@ class MovieInfoItemModel {
   late String movie_intro_foto;
 
   late String icon;
-
-  late String level_name_box;
 
   late String release_movie_time;
 
@@ -26,16 +26,45 @@ class MovieInfoItemModel {
     this.h3,
     this.movie_intro_foto,
     this.icon,
-    this.level_name_box,
     this.release_movie_time,
     this.length,
     this.director,
     this.actor,
   );
+
+  MovieInfoItemModel.fromJson(Map<String, dynamic> json) {
+    h1 = json['h1'];
+    h3 = json['h3'];
+    movie_intro_foto = json['movie_intro_foto'];
+    icon = json['icon'];
+    release_movie_time = json['release_movie_time'];
+    length = json['length'];
+    director = json['director'];
+    actor = json['actor'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['h1'] = h1;
+    data['h3'] = h3;
+    data['movie_intro_foto'] = movie_intro_foto;
+    data['icon'] = icon;
+    data['release_movie_time'] = release_movie_time;
+    data['length'] = length;
+    data['director'] = director;
+    data['actor'] = actor;
+    return data;
+  }
 }
 
 class MovieInfoListModel extends PagingModel<MovieInfoItemModel> {
   MovieInfoListModel.fromParse(String body) {
+    List<dynamic> list = json.decode(body);
+    itemList = [];
+    list.forEach((v) {
+      itemList?.add(MovieInfoItemModel.fromJson(v));
+    });
+    /*
     var doc = parse(body);
 
     itemList = [];
@@ -85,5 +114,6 @@ class MovieInfoListModel extends PagingModel<MovieInfoItemModel> {
     });
     itemList?.add(MovieInfoItemModel(h1, h3, movie_intro_foto, icon,
         level_name_box, release_movie_time, length, director, actor));
+     */
   }
 }

@@ -15,17 +15,19 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<MenuInfoModel> infos = <MenuInfoModel>[];
     MenuInfoModel menuInfo = MenuInfoModel();
-    menuInfo.icon = "img/enl_2.png";
-    menuInfo.title = "本周新片";
+    menuInfo.icon = "img/enl_1.png";
+    menuInfo.title = "現正熱映";
     infos.add(menuInfo);
     menuInfo = MenuInfoModel();
     menuInfo.icon = "img/enl_4.png";
-    menuInfo.title = "上映中";
+    menuInfo.title = "即將上映";
     infos.add(menuInfo);
+    /*
     menuInfo = MenuInfoModel();
     menuInfo.icon = "img/enl_1.png";
     menuInfo.title = "即將上映";
     infos.add(menuInfo);
+    */
     menuInfo = MenuInfoModel();
     menuInfo.icon = "img/enl_5.png";
     menuInfo.title = "電影院";
@@ -55,14 +57,11 @@ class HomePageState extends State<HomePage> {
         children: List.generate(infos.length, (index) {
           return InkWell(
               onTap: () {
-                if (infos[index].title.contains("本周新片")) {
+                if (infos[index].title.contains("現正熱映")) {
                   AppNavigator.pushMovieThisweek(context);
                 }
-                if (infos[index].title.contains("上映中")) {
-                  AppNavigator.pushMovieIntheaters(context);
-                }
                 if (infos[index].title.contains("即將上映")) {
-                  AppNavigator.pushMovieComingsoon(context);
+                  AppNavigator.pushMovieIntheaters(context);
                 }
                 if (infos[index].title.contains("電影院")) {
                   AppNavigator.pushAreaList(context);

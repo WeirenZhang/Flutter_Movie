@@ -14,7 +14,7 @@ class MovieThisWeekPageState extends State<MovieThisWeekPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("本周新片"),
+          title: const Text("現正熱映"),
           centerTitle: true,
         ),
         body: const MovieThisWeekWidget());

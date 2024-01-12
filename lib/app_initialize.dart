@@ -8,7 +8,7 @@ class AppInitialize {
   //App初始化工作
   static Future<void> init() async {
     await CacheManager.preInit();
-    HttpConstant.baseUrl = 'https://movies.yahoo.com.tw/';
+    HttpConstant.baseUrl = 'https://script.google.com/';
     /*
     Future.delayed(
         const Duration(milliseconds: 2000), () => FlutterSplashScreen.hide());

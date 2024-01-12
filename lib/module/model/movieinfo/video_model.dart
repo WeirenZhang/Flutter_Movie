@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:movie_flutter/component/core/model/paging_model.dart';
 import 'package:html/parser.dart';
 import 'package:movie_flutter/component/utils/utils.dart';
@@ -14,10 +16,27 @@ class VideoItemModel {
     this.href,
     this.cover,
   );
+
+  VideoItemModel.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    href = json['href'];
+    cover = json['cover'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    return data;
+  }
 }
 
 class VideoListModel extends PagingModel<VideoItemModel> {
   VideoListModel.fromParse(String body) {
+    List<dynamic> list = json.decode(body);
+    itemList = [];
+    list.forEach((v) {
+      itemList?.add(VideoItemModel.fromJson(v));
+    });
+    /*
     var doc = parse(body);
     itemList = [];
     doc.querySelectorAll(".have_arbox").forEach((e) {
@@ -36,5 +55,6 @@ class VideoListModel extends PagingModel<VideoItemModel> {
         });
       }
     });
+     */
   }
 }

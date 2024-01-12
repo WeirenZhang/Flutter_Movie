@@ -1,20 +1,38 @@
+import 'dart:convert';
+
 import 'package:movie_flutter/component/core/model/paging_model.dart';
 import 'package:html/parser.dart';
 import 'package:movie_flutter/component/utils/utils.dart';
 
 class TheaterAreaItemModel {
-  late String data_area;
-
   late String theater_top;
 
-  late List<TheaterInfoModel> theater_list_info;
+  late List<TheaterInfoModel> theater_list;
 
-  TheaterAreaItemModel(
-      this.data_area, this.theater_top, this.theater_list_info);
+  TheaterAreaItemModel(this.theater_top, this.theater_list);
+
+  TheaterAreaItemModel.fromJson(Map<String, dynamic> json) {
+    theater_top = json['theater_top'];
+    if (json['theater_list'] != null) {
+      theater_list = [];
+      (json['theater_list'] as List).forEach((v) {
+        theater_list.add(TheaterInfoModel.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['theater_top'] = theater_top;
+    if (this.theater_list != null) {
+      data['theater_list'] = this.theater_list.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class TheaterInfoModel {
-  late String theater_id;
+  late String id;
 
   late String name;
 
@@ -23,14 +41,14 @@ class TheaterInfoModel {
   late String tel;
 
   TheaterInfoModel(
-    this.theater_id,
+    this.id,
     this.name,
     this.adds,
     this.tel,
   );
 
   TheaterInfoModel.fromJson(Map<String, dynamic> json) {
-    theater_id = json['theater_id'];
+    id = json['id'];
     name = json['name'];
     adds = json['adds'];
     tel = json['tel'];
@@ -38,7 +56,7 @@ class TheaterInfoModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['theater_id'] = theater_id;
+    data['id'] = id;
     data['name'] = name;
     data['adds'] = adds;
     data['tel'] = tel;
@@ -48,6 +66,12 @@ class TheaterInfoModel {
 
 class TheaterAreaListModel extends PagingModel<TheaterAreaItemModel> {
   TheaterAreaListModel.fromParse(String body) {
+    List<dynamic> list = json.decode(body);
+    itemList = [];
+    list.forEach((v) {
+      itemList?.add(TheaterAreaItemModel.fromJson(v));
+    });
+    /*
     var doc = parse(body);
 
     itemList = [];
@@ -74,5 +98,6 @@ class TheaterAreaListModel extends PagingModel<TheaterAreaItemModel> {
       });
       itemList?.add(TheaterAreaItemModel(id, title, theaterInfo));
     });
+     */
   }
 }

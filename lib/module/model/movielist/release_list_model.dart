@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:movie_flutter/component/core/model/paging_model.dart';
 import 'package:html/parser.dart';
 import 'package:movie_flutter/component/utils/utils.dart';
@@ -41,6 +43,13 @@ class ReleaseItemModel {
 }
 
 class ReleaseListModel extends PagingModel<ReleaseItemModel> {
+  ReleaseListModel.fromJson(String body) {
+    List<dynamic> list = json.decode(body);
+    itemList = [];
+    list.forEach((v) {
+      itemList?.add(ReleaseItemModel.fromJson(v));
+    });
+    /*
   ReleaseListModel.fromParse(String body) {
     var doc = parse(body);
 
@@ -66,5 +75,6 @@ class ReleaseListModel extends PagingModel<ReleaseItemModel> {
 
       itemList?.add(ReleaseItemModel(id, title, thumb, en, release_movie_time));
     });
+    */
   }
 }

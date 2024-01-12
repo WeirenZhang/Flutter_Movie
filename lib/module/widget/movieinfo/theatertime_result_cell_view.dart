@@ -15,7 +15,7 @@ class theatertime_result_cell_view extends StatelessWidget {
     return InkWell(
         onTap: () {
           AppNavigator.pushMovieTheaterResult(
-              context, TheaterInfoModel(item.id, item.theater, "", item.tel));
+              context, TheaterInfoModel(item.id, item.theater, "", ""));
         },
         child: Card(
             color: SQColor.lightGray,

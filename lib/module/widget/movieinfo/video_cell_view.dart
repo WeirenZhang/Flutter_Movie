@@ -32,6 +32,7 @@ class video_cell_view extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(item.title,
+                          maxLines: 2,
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)))
                 ],

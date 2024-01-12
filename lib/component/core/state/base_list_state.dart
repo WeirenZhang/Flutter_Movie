@@ -75,7 +75,9 @@ abstract class BaseListState<L, M extends BaseListModel<L, PagingModel<L>>,
                       controller: model.refreshController,
                       onRefresh: model.refresh,
                       enablePullDown: enablePullDown,
-                      child: getContentChild(model))));
+                      child: model.itemList.isNotEmpty
+                          ? getContentChild(model)
+                          : null)));
         });
   }
 
@@ -90,8 +92,6 @@ abstract class TabListState<L, M extends TabListModel<L, PagingModel<L>>,
   M get viewModel; //真实获取数据的仓库
 
   Widget getContentChild(M model); //真实的列表控件
-  late TabController tabController;
-  late PageController pageController;
 
   @override
   Widget build(BuildContext context) {
@@ -102,42 +102,10 @@ abstract class TabListState<L, M extends TabListModel<L, PagingModel<L>>,
           model.loadData();
         },
         builder: (context, model, child) {
-          tabController =
-              TabController(length: model.itemList.length, vsync: this);
-          pageController = PageController();
-          return Column(
-            children: <Widget>[
-              Container(
-                  padding: const EdgeInsets.only(left: 6, right: 6, top: 3),
-                  child: ElevatedButton.icon(
-                    icon: const Icon(EvilIcons.search),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(40), // NEW
-                    ),
-                    label: Text(model.date!),
-                    onPressed: () async {
-                      final result = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.parse(model.date!),
-                          firstDate: DateTime.now(),
-                          lastDate:
-                              DateTime.now().add(const Duration(days: 9)));
-                      if (result != null) {
-                        debugPrint("DateTime=$result");
-                        DateTime dt = DateTime.parse(result.toString());
-                        var formatter = DateFormat('yyyy-MM-dd');
-                        model.date = formatter.format(dt);
-                        model.retry();
-                      }
-                    },
-                  )),
-              Expanded(
-                  child: LoadingContainer(
-                      viewState: model.viewState,
-                      retry: model.retry,
-                      child: getContentChild(model)))
-            ],
-          );
+          return LoadingContainer(
+              viewState: model.viewState,
+              retry: model.retry,
+              child: model.itemList.isNotEmpty ? getContentChild(model) : null);
         });
   }
 

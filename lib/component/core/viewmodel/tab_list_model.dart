@@ -33,10 +33,14 @@ abstract class TabListModel<T, M extends PagingModel<T>>
     loadData();
   }
 
+  select() {
+    notifyListeners();
+  }
+
   //下拉刷新请求地址
   String getUrl();
 
-  String? date;
+  int index = 0;
 
   //请求返回的真实数据模型
   M getModel(String body);

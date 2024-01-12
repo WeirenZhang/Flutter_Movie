@@ -42,6 +42,7 @@ class theater_result_cell_view extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(top: 10, left: 10, right: 10),
                       child: Text(item.theaterlist_name,
+                          maxLines: 2,
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold))),
                   const SizedBox(height: 10),
@@ -61,45 +62,62 @@ class theater_result_cell_view extends StatelessWidget {
                           ? MovieCoverImage(item.icon, width: 45, height: 45)
                           : null),
                   const SizedBox(height: 10),
-                  Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: GridView.count(
-                        shrinkWrap: true,
-                        childAspectRatio: 2.0,
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: List.generate(item.tapbox.length, (index) {
-                          return Card(
-                              color: SQColor.c840aa,
-                              child: Center(
-                                  child: Text(item.tapbox[index],
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: SQColor.white))));
-                        }),
-                      )),
-                  const SizedBox(height: 10),
-                  Container(
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, bottom: 10),
-                      child: GridView.count(
-                        shrinkWrap: true,
-                        childAspectRatio: 2.0,
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        physics: NeverScrollableScrollPhysics(),
-                        children:
-                            List.generate(item.theater_time.length, (index) {
-                          return Card(
-                              child: Center(
-                                  child: Text(item.theater_time[index],
-                                      style: TextStyle(
-                                          fontSize: 16, color: SQColor.gray))));
-                        }),
-                      ))
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: item.types.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 10, bottom: 10),
+                                child: GridView.count(
+                                  shrinkWrap: true,
+                                  childAspectRatio: 3.0,
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  children: List.generate(
+                                      item.types[index].types.length, (index1) {
+                                    return Card(
+                                        color: SQColor.c840aa,
+                                        child: Center(
+                                            child: Text(
+                                                item.types[index].types[index1]
+                                                    .type,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: SQColor.white))));
+                                  }),
+                                )),
+                            Container(
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 10, bottom: 10),
+                                child: GridView.count(
+                                  shrinkWrap: true,
+                                  childAspectRatio: 3.0,
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  children: List.generate(
+                                      item.types[index].times.length, (index1) {
+                                    return Card(
+                                        child: Center(
+                                            child: Text(
+                                                item.types[index].times[index1]
+                                                    .time,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: SQColor.gray))));
+                                  }),
+                                ))
+                          ]);
+                    },
+                  ),
                 ],
               ),
             ),

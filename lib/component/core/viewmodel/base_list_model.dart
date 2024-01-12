@@ -16,6 +16,7 @@ abstract class BaseListModel<T, M extends PagingModel<T>>
   void refresh() {
     HttpManager.getData(getUrl(),
         success: (body) {
+          print(body);
           M model = getModel(body);
           doRefreshDataProcess(model.itemList!);
           if (model.itemList!.isNotEmpty) {
@@ -42,6 +43,10 @@ abstract class BaseListModel<T, M extends PagingModel<T>>
     refresh();
   }
 
+  select() {
+    notifyListeners();
+  }
+
   void doRefreshDataProcess(List<T> list) {
     itemList = list;
   }
@@ -51,6 +56,8 @@ abstract class BaseListModel<T, M extends PagingModel<T>>
 
   //下拉刷新请求地址
   String getUrl();
+
+  int index = 0;
 
   //请求返回的真实数据模型
   M getModel(String body);

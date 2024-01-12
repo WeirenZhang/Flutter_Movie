@@ -18,15 +18,22 @@ abstract class PagingListModel<T, M extends PagingModel<T>>
   void refresh() {
     page = 1;
 
-    HttpManager.getData(sprintf('%s?page=%s', [getUrl(), page]),
+    HttpManager.getData(
+        sprintf(
+            '%s?page=%s&type=%s&tab=%s', [getUrl(), page, 'MovieList', getTab()]),
         success: (body) {
+          print(body);
           M model = getModel(body);
           doRefreshDataProcess(model.itemList!);
-          viewState = ViewState.content;
+          if (model.itemList!.isNotEmpty) {
+            viewState = ViewState.content;
+            page += 1;
+          } else {
+            viewState = ViewState.nodata;
+          }
           refreshController.refreshCompleted();
           refreshController.footerMode?.value = LoadStatus.canLoading;
           doExtraAfterRefresh();
-          page += 1;
         },
         fail: (e) {
           showError(e.toString());
@@ -38,7 +45,9 @@ abstract class PagingListModel<T, M extends PagingModel<T>>
 
   //加载更多
   Future<void> loadMore() async {
-    HttpManager.getData(sprintf('%s?page=%s', [getUrl(), page]),
+    HttpManager.getData(
+        sprintf(
+            '%s?page=%s&type=%s&tab=%s', [getUrl(), page, 'MovieList', getTab()]),
         success: (body) {
       M model = getModel(body);
       if (model.itemList?.length == 0) {
@@ -75,6 +84,12 @@ abstract class PagingListModel<T, M extends PagingModel<T>>
   //下拉刷新请求地址
   String getUrl();
 
+  //下拉刷新请求地址
+  String getTab();
+
   //请求返回的真实数据模型
   M getModel(String body);
+
+//请求返回的真实数据模型
+//M getModel(Map<String, dynamic> json);
 }

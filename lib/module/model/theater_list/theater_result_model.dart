@@ -1,6 +1,28 @@
+import 'dart:convert';
+
 import 'package:movie_flutter/component/core/model/paging_model.dart';
 import 'package:html/parser.dart';
 import 'package:movie_flutter/component/utils/utils.dart';
+
+import '../movieinfo/movietime_result_model.dart';
+
+class TheaterDateItemModel {
+  late String date;
+
+  late List<TheaterResultItemModel> data;
+
+  TheaterDateItemModel(this.date, this.data);
+
+  TheaterDateItemModel.fromJson(Map<String, dynamic> json) {
+    date = json['date'];
+    if (json['data'] != null) {
+      data= [];
+      (json['data'] as List).forEach((v) {
+        data.add(TheaterResultItemModel.fromJson(v));
+      });
+    }
+  }
+}
 
 class TheaterResultItemModel {
   late String id;
@@ -13,16 +35,34 @@ class TheaterResultItemModel {
 
   late String icon;
 
-  late List<String> tapbox;
-
-  late List<String> theater_time;
+  late List<Types> types;
 
   TheaterResultItemModel(this.id, this.release_foto, this.theaterlist_name,
-      this.en, this.icon, this.tapbox, this.theater_time);
+      this.en, this.icon, this.types);
+
+  TheaterResultItemModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    release_foto = json['release_foto'];
+    theaterlist_name = json['theaterlist_name'];
+    en = json['en'];
+    icon = json['icon'];
+    if (json['types'] != null) {
+      types = [];
+      (json['types'] as List).forEach((v) {
+        types.add(Types.fromJson(v));
+      });
+    }
+  }
 }
 
-class TheaterResultListModel extends PagingModel<TheaterResultItemModel> {
+class TheaterResultListModel extends PagingModel<TheaterDateItemModel> {
   TheaterResultListModel.fromParse(String body) {
+    List<dynamic> list = json.decode(body);
+    itemList = [];
+    list.forEach((v) {
+      itemList?.add(TheaterDateItemModel.fromJson(v));
+    });
+    /*
     var doc = parse(body);
 
     itemList = [];
@@ -74,5 +114,6 @@ class TheaterResultListModel extends PagingModel<TheaterResultItemModel> {
       itemList?.add(TheaterResultItemModel(
           id, release_foto, theaterlist_name, en, icon, tapbox, theater_time));
     });
+    */
   }
 }

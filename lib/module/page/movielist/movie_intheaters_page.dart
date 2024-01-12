@@ -14,7 +14,7 @@ class MovieInTheatersPageState extends State<MovieInTheatersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("上映中"),
+          title: const Text("即將上映"),
           centerTitle: true,
         ),
         body: const MovieInTheatersWidget());

@@ -67,27 +67,7 @@ class movieinfo_cell_view extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           width: width,
           color: Colors.white,
-          child: Text(item.length,
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                  color: SQColor.gray)),
-        ),
-        Container(
-          padding: const EdgeInsets.all(10),
-          width: width,
-          color: Colors.black,
-          child: const Text("電影類型",
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white)),
-        ),
-        Container(
-          padding: const EdgeInsets.all(10),
-          width: width,
-          color: Colors.white,
-          child: Text(item.level_name_box,
+          child: Text(item.release_movie_time,
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,

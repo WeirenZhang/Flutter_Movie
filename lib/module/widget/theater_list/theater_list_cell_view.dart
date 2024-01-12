@@ -27,6 +27,7 @@ class theater_list_cell_view extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(item.name,
+                        maxLines: 2,
                         style: TextStyle(
                             color: SQColor.a434eae,
                             fontSize: 18,
