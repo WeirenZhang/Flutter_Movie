@@ -3,6 +3,7 @@
 Java版：[Java_Movie](https://github.com/WeirenZhang/Java_Movie)<br /><br />
 Kotlin版：[Kotlin_Movie](https://github.com/WeirenZhang/Kotlin_Movie)<br /><br />
 ReactNative版： [ReactNative_Movie](https://github.com/WeirenZhang/ReactNative_Movie)<br /><br />
+喜歡的話希望給個 Star 或 Fork ^_^ ，謝謝<br /><br />
 
 # 專案截圖
 
