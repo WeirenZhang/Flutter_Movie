@@ -23,8 +23,8 @@ class StoreInfoWidgetState
         final item = model.itemList[index].storeInfo;
         return Container(
           padding: const EdgeInsets.all(20),
-          child:
-              Text(item, style: TextStyle(fontSize: 18, color: SQColor.gray)),
+          child: Text(item,
+              style: TextStyle(fontSize: 18, color: SQColor.darkGray)),
         );
       },
       itemCount: model.itemList.length);

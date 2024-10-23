@@ -12,7 +12,7 @@ class VideoModel extends BaseListModel<VideoItemModel, VideoListModel> {
   @override
   String getUrl() {
     return sprintf('%s?type=%s&movie_id=%s', [
-      '${HttpConstant.baseUrl}macros/s/AKfycbwwB2Ke85PFeQqt2P9BRZFOxWif6JI4_ImblPyfFlP-VTJLkJJ6sZkCMD4tPhF_g8yT/exec',
+      '${HttpConstant.baseUrl}macros/s/AKfycbzNPN95_VIeYPTKF85yVS5oml_lUiVL0TUlQvuNj1krEUjUQFtBq_BY6eraap6zW2ZI/exec',
       'Video',
       releaseItem.id
     ]);

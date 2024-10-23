@@ -26,7 +26,7 @@ class MovieTimeResultModel
     return '${HttpConstant.baseUrl}ajax/pc/get_schedule_by_movie?movie_id=${releaseItem.id}&date=${date}&area_id=&theater_id=&datetime=&movie_type_id=';
     */
     return sprintf('%s?type=%s&movie_id=%s', [
-      '${HttpConstant.baseUrl}macros/s/AKfycbwwB2Ke85PFeQqt2P9BRZFOxWif6JI4_ImblPyfFlP-VTJLkJJ6sZkCMD4tPhF_g8yT/exec',
+      '${HttpConstant.baseUrl}macros/s/AKfycbzNPN95_VIeYPTKF85yVS5oml_lUiVL0TUlQvuNj1krEUjUQFtBq_BY6eraap6zW2ZI/exec',
       'MovieTime',
       releaseItem.id
     ]);

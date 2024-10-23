@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_flutter/module/page/movielist/movie_thisweek_page.dart';
-import 'package:movie_flutter/module/page/movielist/movie_intheaters_Page.dart';
-import 'package:movie_flutter/module/page/movielist/movie_comingsoon_page.dart';
+import 'package:movie_flutter/module/page/movielist/movie_list_page.dart';
 import 'package:movie_flutter/module/page/theater_list/theater_area_page.dart';
-import 'package:movie_flutter/module/model/theater_list/theater_result_model.dart';
 import 'package:movie_flutter/module/page/my_favourite/my_favourite_tab_navigation.dart';
 import 'package:movie_flutter/module/page/webview_page.dart';
 import 'package:movie_flutter/module/page/theater_list/theater_list_page.dart';
@@ -22,16 +19,8 @@ class AppNavigator {
     );
   }
 
-  static pushMovieThisweek(BuildContext context) {
-    AppNavigator.push(context, const MovieThisWeekPage());
-  }
-
-  static pushMovieIntheaters(BuildContext context) {
-    AppNavigator.push(context, const MovieInTheatersPage());
-  }
-
-  static pushMovieComingsoon(BuildContext context) {
-    AppNavigator.push(context, const MovieComingSoonPage());
+  static pushMovieList(BuildContext context, String home_id, String title) {
+    AppNavigator.push(context, MovieListPage(home_id, title));
   }
 
   static pushAreaList(BuildContext context) {

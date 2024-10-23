@@ -35,7 +35,7 @@ class movieinfo_cell_view extends StatelessWidget {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
-                  color: SQColor.gray)),
+                  color: SQColor.darkGray)),
         ),
         Container(
           padding: const EdgeInsets.all(10),
@@ -71,7 +71,7 @@ class movieinfo_cell_view extends StatelessWidget {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
-                  color: SQColor.gray)),
+                  color: SQColor.darkGray)),
         ),
         Container(
           padding: const EdgeInsets.all(10),
@@ -91,7 +91,7 @@ class movieinfo_cell_view extends StatelessWidget {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
-                  color: SQColor.gray)),
+                  color: SQColor.darkGray)),
         ),
         Container(
           padding: const EdgeInsets.all(10),
@@ -111,7 +111,7 @@ class movieinfo_cell_view extends StatelessWidget {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
-                  color: SQColor.gray)),
+                  color: SQColor.darkGray)),
         ),
         Container(
           padding: const EdgeInsets.all(10),
@@ -131,7 +131,7 @@ class movieinfo_cell_view extends StatelessWidget {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
-                  color: SQColor.gray)),
+                  color: SQColor.darkGray)),
         ),
       ],
     );

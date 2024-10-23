@@ -15,30 +15,44 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<MenuInfoModel> infos = <MenuInfoModel>[];
     MenuInfoModel menuInfo = MenuInfoModel();
+    menuInfo.icon = "img/enl_2.png";
+    menuInfo.title = "本周新片";
+    menuInfo.home_id = "0";
+    infos.add(menuInfo);
+    menuInfo = MenuInfoModel();
     menuInfo.icon = "img/enl_1.png";
-    menuInfo.title = "現正熱映";
+    menuInfo.title = "本期首輪";
+    menuInfo.home_id = "1";
+    infos.add(menuInfo);
+    menuInfo = MenuInfoModel();
+    menuInfo.icon = "img/enl_1.png";
+    menuInfo.title = "本期二輪";
+    menuInfo.home_id = "2";
     infos.add(menuInfo);
     menuInfo = MenuInfoModel();
     menuInfo.icon = "img/enl_4.png";
-    menuInfo.title = "即將上映";
+    menuInfo.title = "近期上映";
+    menuInfo.home_id = "3";
     infos.add(menuInfo);
-    /*
     menuInfo = MenuInfoModel();
-    menuInfo.icon = "img/enl_1.png";
-    menuInfo.title = "即將上映";
+    menuInfo.icon = "img/enl_4.png";
+    menuInfo.title = "新片快報";
+    menuInfo.home_id = "4";
     infos.add(menuInfo);
-    */
     menuInfo = MenuInfoModel();
     menuInfo.icon = "img/enl_5.png";
     menuInfo.title = "電影院";
+    menuInfo.home_id = "5";
     infos.add(menuInfo);
     menuInfo = MenuInfoModel();
     menuInfo.icon = "img/enl_3.png";
     menuInfo.title = "我的最愛";
+    menuInfo.home_id = "6";
     infos.add(menuInfo);
     menuInfo = MenuInfoModel();
-    menuInfo.icon = "img/enl_2.png";
+    menuInfo.icon = "img/enl_6.png";
     menuInfo.title = "網路訂票";
+    menuInfo.home_id = "7";
     infos.add(menuInfo);
 
     return Scaffold(
@@ -50,26 +64,35 @@ class HomePageState extends State<HomePage> {
       ),
       body: GridView.count(
         crossAxisCount: 3,
-        padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 35),
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         childAspectRatio: 1.0,
         children: List.generate(infos.length, (index) {
           return InkWell(
               onTap: () {
-                if (infos[index].title.contains("現正熱映")) {
-                  AppNavigator.pushMovieThisweek(context);
+                if (infos[index].home_id.contains("0")) {
+                  AppNavigator.pushMovieList(context, "0", infos[index].title);
                 }
-                if (infos[index].title.contains("即將上映")) {
-                  AppNavigator.pushMovieIntheaters(context);
+                if (infos[index].home_id.contains("1")) {
+                  AppNavigator.pushMovieList(context, "1", infos[index].title);
                 }
-                if (infos[index].title.contains("電影院")) {
+                if (infos[index].home_id.contains("2")) {
+                  AppNavigator.pushMovieList(context, "2", infos[index].title);
+                }
+                if (infos[index].home_id.contains("3")) {
+                  AppNavigator.pushMovieList(context, "3", infos[index].title);
+                }
+                if (infos[index].home_id.contains("4")) {
+                  AppNavigator.pushMovieList(context, "4", infos[index].title);
+                }
+                if (infos[index].home_id.contains("5")) {
                   AppNavigator.pushAreaList(context);
                 }
-                if (infos[index].title.contains("我的最愛")) {
+                if (infos[index].home_id.contains("6")) {
                   AppNavigator.pushMyFavourite(context);
                 }
-                if (infos[index].title.contains("網路訂票")) {
+                if (infos[index].home_id.contains("7")) {
                   AppNavigator.pushWebView(
                       context,
                       'https://www.ezding.com.tw/faq?comeFromApp=true&device=app',

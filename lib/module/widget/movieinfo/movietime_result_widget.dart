@@ -47,10 +47,11 @@ class MovieTimeResultWidgetState extends TabListState<MovieDateTabItemModel,
                     context: context,
                     builder: (BuildContext context) {
                       var child = Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           const ListTile(title: Text("選擇日期")),
-                          Expanded(
-                              child: ListView.builder(
+                          ListView.builder(
+                            shrinkWrap: true,
                             itemCount: model.itemList.length,
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
@@ -59,7 +60,7 @@ class MovieTimeResultWidgetState extends TabListState<MovieDateTabItemModel,
                                 onTap: () => Navigator.of(context).pop(index),
                               );
                             },
-                          )),
+                          ),
                         ],
                       );
                       //使用AlertDialog会报错
